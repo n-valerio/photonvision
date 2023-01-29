@@ -27,6 +27,7 @@ import org.photonvision.common.hardware.Platform;
 import org.photonvision.common.hardware.metrics.cmds.CmdBase;
 import org.photonvision.common.hardware.metrics.cmds.FileCmds;
 import org.photonvision.common.hardware.metrics.cmds.LinuxCmds;
+import org.photonvision.common.hardware.metrics.cmds.OPi5Cmds;
 import org.photonvision.common.hardware.metrics.cmds.PiCmds;
 import org.photonvision.common.logging.LogGroup;
 import org.photonvision.common.logging.Logger;
@@ -44,6 +45,8 @@ public class MetricsManager {
             cmds = new FileCmds();
         } else if (Platform.isRaspberryPi()) {
             cmds = new PiCmds(); // Pi's can use a hardcoded command set
+        } else if (Platform.isOrangePi5()){
+            cmds = new OPi5Cmds();
         } else if (Platform.isLinux()) {
             cmds = new LinuxCmds(); // Linux/Unix platforms assume a nominal command set
         } else {

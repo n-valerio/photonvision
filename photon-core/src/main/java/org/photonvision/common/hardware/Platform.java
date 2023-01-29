@@ -82,6 +82,11 @@ public enum Platform {
         return currentPlatform.isPi;
     }
 
+    public static boolean isOrangePi5(){
+        // Tested only on the offical OPi5 debian image
+        return fileHasText("/proc/device-tree/model","Orange Pi 5");
+    }
+
     public static String getPlatformName() {
         if (currentPlatform.equals(UNKNOWN)) {
             return UnknownPlatformString;
