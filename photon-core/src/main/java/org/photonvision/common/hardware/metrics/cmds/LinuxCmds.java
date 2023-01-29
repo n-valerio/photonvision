@@ -31,8 +31,8 @@ public class LinuxCmds extends CmdBase {
 
         cpuUptimeCommand = "uptime -p | cut -c 4-";
 
-        // RAM
-        ramUsageCommand = "awk '/MemFree:/ {print int($2 / 1000);}' /proc/meminfo";
+        // RAM - This is calculated similarly to htop and doesn't necessarily reflect physical memory used
+        ramUsageCommand = "awk '/MemTotal:/ {MEMTOTAL=$2;next} /MemAvailable:/ {print int((MEMTOTAL-$2)/1000);}' /proc/meminfo";
 
         // Disk
         diskUsageCommand = "df ./ --output=pcent | tail -n +2";
